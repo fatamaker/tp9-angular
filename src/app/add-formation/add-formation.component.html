@@ -1,0 +1,43 @@
+
+<div class="container">
+    <div>
+    <h2>Ajouter une Formation :</h2>
+    </div>
+    <form >
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">ID</span>
+            <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="newFormation.idFormation"  name="IDFormation">
+          </div>
+          
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Nom de la formation" aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="newFormation.nomFormation"  name="nomFormation">
+            
+          </div>
+          
+
+          
+          <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="newFormation.prixFormation"  name="prixFormation">
+            <span class="input-group-text">0.00</span>
+          </div>
+          
+          <div class="input-group mb-3">
+            <input type="date"  name="dateCreation" class="form-control" placeholder="date de debut" [(ngModel)]="newFormation.datedebut">
+
+            <span class="input-group-text"></span>
+            <input type="date"  name="datefin" class="form-control"   [(ngModel)]="newFormation.datefin">
+          </div>
+          
+          <select class="form-select" aria-label="Default select example"  name="modeFormation" [(ngModel)]="newFormation.modeFormation">
+            <option selected>Mode de la formation</option>
+            <option value="en ligne">en ligne</option>
+            <option value="en personne">en personne</option>
+           
+          </select>
+          <div class="mt-2">
+            <button type="submit" class="btn btn-success" (click)="addFormation()">Ajouter</button>
+            </div>
+            
+    </form>
+</div>
