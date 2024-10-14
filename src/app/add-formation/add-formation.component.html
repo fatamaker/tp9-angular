@@ -1,5 +1,6 @@
 
 <div class="container">
+  <br>
     <div>
     <h2>Ajouter une Formation :</h2>
     </div>
@@ -15,26 +16,37 @@
           </div>
           
 
-          
+          <label>Prix Formation</label>
           <div class="input-group mb-3">
             <span class="input-group-text">$</span>
             <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="newFormation.prixFormation"  name="prixFormation">
             <span class="input-group-text">0.00</span>
           </div>
-          
+          <label>Date</label>
           <div class="input-group mb-3">
             <input type="date"  name="dateCreation" class="form-control" placeholder="date de debut" [(ngModel)]="newFormation.datedebut">
 
             <span class="input-group-text"></span>
             <input type="date"  name="datefin" class="form-control"   [(ngModel)]="newFormation.datefin">
           </div>
-          
+          <label>mode Formation</label>
           <select class="form-select" aria-label="Default select example"  name="modeFormation" [(ngModel)]="newFormation.modeFormation">
-            <option selected>Mode de la formation</option>
+            
             <option value="en ligne">en ligne</option>
             <option value="en personne">en personne</option>
            
           </select>
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <br>
+            <label>Theme</label>
+            <select class="form-select"id="newIdThem" name="newIdThem"
+            [(ngModel)]="newIdThem">
+             <option *ngFor="let them of themes" [value]="them.idTheme" >
+             {{them.nomTheme}}
+            </option>
+            </select>
+            <br>
+            </div>
           <div class="mt-2">
             <button type="submit" class="btn btn-success" (click)="addFormation()">Ajouter</button>
             </div>
