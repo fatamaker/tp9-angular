@@ -1,61 +1,59 @@
-
-<div class="container"  *ngIf="currentFormation">
+<div class="container" *ngIf="currentFormation">
     <br>
     <div>
-    <h2>Modifier une formation :</h2>
+        <h2>Modifier une formation :</h2>
     </div>
-    <form (ngSubmit)="updateFormation()">
+    <form (ngSubmit)="updateFormation()" [formGroup]="myForm">
         <div hidden class="col-sm-2 col-md-2 col-lg-2">
-            <label >ID formation</label>
-            <input type="text" [(ngModel)]="currentFormation.idFormation"
-            name="idFormation" class="form-control">
-            </div>
-    <div class="col-sm-4 col-md-4 col-lg-4" >
-    <label >Nom Formation</label>
-    <input type="text"[(ngModel)]= "currentFormation.nomFormation" name="nomFormation" class="form-control">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-    <label >Prix Formation</label>
-    <input type="number" [(ngModel)]= "currentFormation.prixFormation" name="prixFormation" class="form-control">
-    </div>
-
-    <div class="col-sm-4 col-md-4 col-lg-4">
-        <label >Date de debut</label>
-<input type="date" [ngModel]="currentFormation.datedebut | date: 'yyyy-MM-dd'" name="datedebut" class="form-control">
-</div>
-
-<div class="col-sm-4 col-md-4 col-lg-4">
-    <label >Date de fin</label>
-<input type="date" [ngModel]="currentFormation.datefin | date: 'yyyy-MM-dd'" name="datefin" class="form-control">
-</div>
-
-<div class="col-sm-2 col-md-2 col-lg-2">
-    
-
-
-    <label>mode Formation</label>
-    <br>
-    <select class="form-select" aria-label="Default select example"  name="modeFormation" [(ngModel)]= "currentFormation.modeFormation">
-      <option selected>Mode de la formation</option>
-      <option value="en ligne">en ligne</option>
-      <option value="en personne">en personne</option>
-     
-    </select>
-</div>
-  
-<div class="mt-2">
-    <label >Theme</label>
-    <div class="col-sm-4 col-md-4 col-lg-4">
-        <select class="form-select" id="idCat" name="idCat"
-        [(ngModel)]="updatedThemId">
-        <option *ngFor="let cat of themes" [value]="cat.idTheme" >
-        {{cat.nomTheme}}
-        </option>
-        </select>
+            <label>ID formation</label>
+            <input type="text" formControlName="idFormation" class="form-control">
         </div>
-        <br>
-
-<button type="submit" class="btn btn-success">Modifier</button>
-</div>
-</form>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom Formation</label>
+            <input type="text" formControlName="nomFormation" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix Formation</label>
+            <input type="number" formControlName="prixFormation" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Date de debut</label>
+            <input type="date" formControlName="datedebut" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Date de fin</label>
+            <input type="date" formControlName="datefin" class="form-control">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input type="text" formControlName="email" class="form-control">
+            <span *ngIf="myForm.controls['email'].hasError('required') && myForm.controls['email'].touched" class="text-danger">
+                Email est obligatoire
+            </span>
+            <span *ngIf="myForm.controls['email'].hasError('email') && myForm.controls['email'].touched" class="text-danger">
+                Email est non valide
+            </span>
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Mode Formation</label>
+            <br>
+            <select class="form-select" formControlName="modeFormation">
+                <option selected>Mode de la formation</option>
+                <option value="en ligne">En ligne</option>
+                <option value="en personne">En personne</option>
+            </select>
+        </div>
+        <div class="mt-2">
+            <label>Thème</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select class="form-select" formControlName="idCat">
+                    <option *ngFor="let cat of themes" [value]="cat.idTheme">
+                        {{cat.nomTheme}}
+                    </option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success">Modifier</button>
+        </div>
+    </form>
 </div>

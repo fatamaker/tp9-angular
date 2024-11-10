@@ -1,10 +1,24 @@
 <div class="container">
     <br>
+    <!--  <form class="form-inline">
+      <div class="form-group mx-sm-3 mb-2 mt-2 ">
+      <label>Nom formation</label>
+      <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+      </div>
+      </form>  -->
+       <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+        <label>Nom formation en tapant</label>
+        <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >
+        </div>
+        </form> 
+        
+    <br>
     <div class="card shadow mb-4">
     <div class="card-body">
     <table class="table table-striped">
     <tr> <th>Id</th><th>Nom</th> <th>Prix</th> <th>Date debut</th> <th>Date fin</th> <th>Mode</th> <th>Theme</th>  </tr>
-    <tbody *ngFor="let formation of formations">
+    <tbody *ngFor="let formation of formations  |searchFilter: searchTerm ">
     <tr >
     <td>{{formation.idFormation}}</td>
     <td>{{formation.nomFormation}}</td>
@@ -13,8 +27,8 @@
     <td>{{formation.datefin | date:'dd/MM/yyyy'}}</td>
     <td>{{formation.modeFormation}}</td> 
     <td>{{formation.theme?.nomTheme}}</td>
-    <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerFormation(formation)">Supprimer</a></td>
-    <td><a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateFormation',formation.idFormation]">Modifier</a></td>
+ 
+    
     
     </tr>
     </tbody>

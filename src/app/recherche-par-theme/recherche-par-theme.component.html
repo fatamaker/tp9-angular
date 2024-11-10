@@ -1,5 +1,17 @@
 <div class="container">
     <br>
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4" >
+        <label>Theme </label>
+        
+        <select class="form-select" id="idTheme" name="idTheme"
+        [(ngModel)]="idTheme" (change)="onChange()">
+        
+        <option *ngFor="let them of themes" value="{{them.idTheme}}">
+        {{them.nomTheme}}
+        </option>
+        </select>
+        </div>
+    <br>
     <div class="card shadow mb-4">
     <div class="card-body">
     <table class="table table-striped">
@@ -13,8 +25,8 @@
     <td>{{formation.datefin | date:'dd/MM/yyyy'}}</td>
     <td>{{formation.modeFormation}}</td> 
     <td>{{formation.theme?.nomTheme}}</td>
-    <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerFormation(formation)">Supprimer</a></td>
-    <td><a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateFormation',formation.idFormation]">Modifier</a></td>
+ 
+    
     
     </tr>
     </tbody>
