@@ -1,6 +1,6 @@
+import { Theme } from './../model/theme.model';
 import { Injectable } from '@angular/core';
 import { Formation } from '../model/formation.model';
-import { Theme } from '../model/theme.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -86,8 +86,24 @@ trierFormation(){
   
     return this.formationRecherche;
     }
+
+   /*  ajouterTheme(Theme: Theme): Theme {
+      const newId =
+        this.themes.length > 0
+          ? Math.max(...this.themes.map((thm) => thm.idTheme ?? 0)) + 1
+          : 1;
+      Theme.idTheme = newId;
+      this.themes.push(Theme);
+      return Theme ;
+    } */
     
     
+      ajouterTheme(cat: Theme):Theme {
+  const id = this.themes.length +1
+  cat.idTheme=id;
+  this.themes.push({...cat}); // ... pour faire un copie de objet cat
+  return cat;
+}
       
  
  
